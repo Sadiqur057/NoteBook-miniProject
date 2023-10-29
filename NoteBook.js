@@ -1,4 +1,22 @@
+let cardContainer = document.getElementById("cardContainer");
 
+const displayNotes= () => {
+  let cardContent = "";
+  for (let key in localStorage) {
+    if (localStorage.hasOwnProperty(key)) {
+      cardContent += `<div class="col-sm-6 mb-3 mb-sm-0" id="card-box">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title" id="note-title">${key}</h5>
+            <p class="card-text" id="note-desc">${localStorage[key]}</p>
+            <button class="btn btn-danger" onclick="deleteNote('${key}',this)">Delete</button>
+          </div>
+        </div>
+      </div>`;
+    }
+  }
+  cardContainer.innerHTML = cardContent;
+};
 const addNote= () => {
     let title = document.getElementById("title").value;
     let note = document.getElementById("note").value;
@@ -11,5 +29,5 @@ const addNote= () => {
   </div>
   `;
     notification.innerHTML=notificationContent;
-    displayCards();
+    displayNotes();
   };
