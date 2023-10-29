@@ -17,6 +17,9 @@ const displayNotes = () => {
   }
   cardContainer.innerHTML = cardContent;
 };
+
+let notification = document.getElementById("notification");
+
 const addNote = () => {
   let title = document.getElementById("title").value;
   let note = document.getElementById("note").value;
