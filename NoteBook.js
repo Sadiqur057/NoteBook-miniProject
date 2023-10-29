@@ -1,6 +1,6 @@
 let cardContainer = document.getElementById("cardContainer");
 
-const displayNotes= () => {
+const displayNotes = () => {
   let cardContent = "";
   for (let key in localStorage) {
     if (localStorage.hasOwnProperty(key)) {
@@ -17,17 +17,24 @@ const displayNotes= () => {
   }
   cardContainer.innerHTML = cardContent;
 };
-const addNote= () => {
-    let title = document.getElementById("title").value;
-    let note = document.getElementById("note").value;
-    localStorage.setItem(title, note);
-  
-    let notificationContent = ""
-    notificationContent+= `<div class="alert alert-warning alert-dismissible fade show" role="alert">
+const addNote = () => {
+  let title = document.getElementById("title").value;
+  let note = document.getElementById("note").value;
+  localStorage.setItem(title, note);
+
+  let notificationContent = "";
+  notificationContent += `<div class="alert alert-warning alert-dismissible fade show" role="alert">
     <strong>Success!</strong> Your note has been saved successfully to NoteBook.
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   `;
-    notification.innerHTML=notificationContent;
-    displayNotes();
-  };
+  notification.innerHTML = notificationContent;
+  displayNotes();
+};
+
+const deleteNote = (key, card) => {
+  localStorage.removeItem(key);
+  let cardElement = card.parentElement.parentElement.parentElement;
+  cardElement.remove();
+};
+displayNotes();
