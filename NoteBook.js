@@ -21,6 +21,7 @@ const displayNotes = () => {
 let notification = document.getElementById("notification");
 
 const addNote = async() => {
+    let error = false;
   let title = await document.getElementById("title").value;
   let note = await document.getElementById("note").value;
   if (!title || !note) {
@@ -30,7 +31,17 @@ const addNote = async() => {
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>`;
     notification.innerHTML = notificationContent;
-    return;
+    return error = true;
+  }
+  for (let key in localStorage) {
+    if(key == title){
+        let notificationContent = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Error!</strong> Note title exists. Please change the title.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>`;
+        notification.innerHTML = notificationContent;
+        return error = true;;
+    }
   }
 
   localStorage.setItem(title, note);
