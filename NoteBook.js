@@ -34,6 +34,8 @@ const addNote = async() => {
   }
 
   localStorage.setItem(title, note);
+  document.getElementById("title").value="";
+  document.getElementById("note").value="";
 
   let notificationContent = "";
   notificationContent += `<div class="alert alert-warning alert-dismissible fade show" role="alert">
